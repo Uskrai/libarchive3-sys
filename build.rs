@@ -27,9 +27,15 @@ fn main() {
             }
         }
     } else {
-        match pkg_config::find_library("libarchive") {
-            Ok(_) => (),
-            Err(msg) => panic!("Unable to locate libarchive, err={:?}", msg),
+        if let Ok(pkg) = vcpkg::find_package("libarchive") {
+            for it in pkg.cargo_metadata {
+                println!("{}", it);
+            }
+        } else {
+            match pkg_config::find_library("libarchive") {
+                Ok(_) => (),
+                Err(msg) => panic!("Unable to locate libarchive, err={:?}", msg),
+            }
         }
     }
 }
