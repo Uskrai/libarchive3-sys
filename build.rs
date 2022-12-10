@@ -27,7 +27,7 @@ fn main() {
             }
         }
     } else {
-        if let Ok(pkg) = vcpkg::find_package("libarchive") {
+        if let Ok(pkg) = vcpkg::find_package("LibArchive") {
             for it in pkg.cargo_metadata {
                 println!("{}", it);
             }
